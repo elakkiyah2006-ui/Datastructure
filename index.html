@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodRoute Optimizer - Delivery Route Optimization</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-route"></i>
+                <span>FoodRoute Optimizer</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#orders" class="nav-link">Orders</a></li>
+                <li><a href="#routes" class="nav-link">Routes</a></li>
+                <li><a href="#analytics" class="nav-link">Analytics</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Optimize Your Delivery Routes</h1>
+            <p class="hero-subtitle">AI-Powered Route Optimization for Faster, Smarter Food Delivery</p>
+            <button class="btn btn-primary" onclick="scrollToSection('orders')">
+                <i class="fas fa-rocket"></i> Get Started
+            </button>
+        </div>
+        <div class="hero-visual">
+            <div class="map-container">
+                <div class="map-placeholder" id="mapVisualization">
+                    <div class="route-path"></div>
+                    <div class="marker restaurant" style="top: 20%; left: 30%;">
+                        <i class="fas fa-store"></i>
+                        <span class="marker-label">Restaurant</span>
+                    </div>
+                    <div class="marker delivery" style="top: 40%; left: 60%;">
+                        <i class="fas fa-home"></i>
+                        <span class="marker-label">Delivery 1</span>
+                    </div>
+                    <div class="marker delivery" style="top: 70%; left: 50%;">
+                        <i class="fas fa-home"></i>
+                        <span class="marker-label">Delivery 2</span>
+                    </div>
+                    <div class="marker delivery" style="top: 50%; left: 75%;">
+                        <i class="fas fa-home"></i>
+                        <span class="marker-label">Delivery 3</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Orders Section -->
+    <section id="orders" class="section">
+        <div class="container">
+            <h2 class="section-title">
+                <i class="fas fa-clipboard-list"></i> Active Orders
+            </h2>
+            <div class="orders-controls">
+                <button class="btn btn-secondary" onclick="addNewOrder()">
+                    <i class="fas fa-plus"></i> Add New Order
+                </button>
+                <button class="btn btn-primary" onclick="optimizeRoutes()">
+                    <i class="fas fa-magic"></i> Optimize Routes
+                </button>
+            </div>
+            <div class="orders-grid" id="ordersGrid">
+                <!-- Orders will be dynamically added here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Routes Section -->
+    <section id="routes" class="section section-dark">
+        <div class="container">
+            <h2 class="section-title">
+                <i class="fas fa-route"></i> Optimized Routes
+            </h2>
+            <div class="routes-container">
+                <div class="routes-list" id="routesList">
+                    <!-- Routes will be dynamically added here -->
+                </div>
+                <div class="route-map" id="routeMap">
+                    <div class="map-placeholder-large">
+                        <div class="route-visualization" id="routeVisualization">
+                            <p class="placeholder-text">Select a route to view on map</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Analytics Section -->
+    <section id="analytics" class="section">
+        <div class="container">
+            <h2 class="section-title">
+                <i class="fas fa-chart-line"></i> Performance Analytics
+            </h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                        <i class="fas fa-route"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-value" id="totalRoutes">0</h3>
+                        <p class="stat-label">Active Routes</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-value" id="totalDeliveries">0</h3>
+                        <p class="stat-label">Total Deliveries</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-value" id="avgTime">0 min</h3>
+                        <p class="stat-label">Avg Delivery Time</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+                        <i class="fas fa-percentage"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-value" id="optimization">0%</h3>
+                        <p class="stat-label">Time Saved</p>
+                    </div>
+                </div>
+            </div>
+            <div class="chart-container">
+                <canvas id="performanceChart"></canvas>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 FoodRoute Optimizer. Mini Project - Delivery Route Optimization.</p>
+        </div>
+    </footer>
+
+    <!-- Add Order Modal -->
+    <div class="modal" id="orderModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Add New Order</h2>
+            <form id="orderForm" onsubmit="handleOrderSubmit(event)">
+                <div class="form-group">
+                    <label for="customerName">Customer Name</label>
+                    <input type="text" id="customerName" required>
+                </div>
+                <div class="form-group">
+                    <label for="customerAddress">Delivery Address</label>
+                    <input type="text" id="customerAddress" required>
+                </div>
+                <div class="form-group">
+                    <label for="orderItems">Order Items</label>
+                    <input type="text" id="orderItems" placeholder="e.g., Pizza, Burger, Fries" required>
+                </div>
+                <div class="form-group">
+                    <label for="priority">Priority</label>
+                    <select id="priority" required>
+                        <option value="normal">Normal</option>
+                        <option value="high">High</option>
+                        <option value="urgent">Urgent</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Add Order</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
