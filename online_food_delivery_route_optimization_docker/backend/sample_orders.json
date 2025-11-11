@@ -1,0 +1,39 @@
+{
+  "start": {
+    "lat": 12.9716,
+    "lng": 77.5946,
+    "label": "Restaurant (Bengaluru)"
+  },
+  "orders": [
+    {
+      "id": "A1",
+      "lat": 12.9611,
+      "lng": 77.6387,
+      "label": "Customer 1"
+    },
+    {
+      "id": "A2",
+      "lat": 12.9352,
+      "lng": 77.6245,
+      "label": "Customer 2"
+    },
+    {
+      "id": "A3",
+      "lat": 12.9866,
+      "lng": 77.5782,
+      "label": "Customer 3"
+    },
+    {
+      "id": "A4",
+      "lat": 12.9486,
+      "lng": 77.642,
+      "label": "Customer 4"
+    },
+    {
+      "id": "A5",
+      "lat": 12.975,
+      "lng": 77.59,
+      "label": "Customer 5"
+    }
+  ]
+}

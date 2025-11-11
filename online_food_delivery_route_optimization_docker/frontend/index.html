@@ -1,0 +1,40 @@
+        <!doctype html>
+        <html>
+        <head>
+          <meta charset="utf-8" />
+          <title>Online Food Delivery - Route Optimization</title>
+          <meta name="viewport" content="width=device-width,initial-scale=1" />
+          <link rel="stylesheet" href="style.css" />
+        </head>
+        <body>
+          <div class="container">
+            <h1>Online Food Delivery — Route Optimization</h1>
+            <p>Enter start location and orders (lat, lng). Click <strong>Optimize</strong> to compute a delivery route.</p>
+
+            <div class="panel">
+              <label>Start (restaurant) latitude, longitude</label>
+              <input id="startLat" placeholder="12.9716" value="12.9716"/>
+              <input id="startLng" placeholder="77.5946" value="77.5946"/>
+            </div>
+
+            <div class="panel">
+              <label>Orders (one per line: id,lat,lng)</label>
+              <textarea id="orders" rows="8">A1,12.9611,77.6387
+A2,12.9352,77.6245
+A3,12.9866,77.5782
+A4,12.9486,77.6420
+A5,12.9750,77.5900</textarea>
+            </div>
+
+            <div class="controls">
+              <button id="btnSample">Load Sample From Backend</button>
+              <button id="btnOptimize">Optimize Route</button>
+              <button id="btnClear">Clear</button>
+            </div>
+
+            <h2>Result</h2>
+            <pre id="result">No results yet.</pre>
+          </div>
+          <script src="app.js"></script>
+        </body>
+        </html>
